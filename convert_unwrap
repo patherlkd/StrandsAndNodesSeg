@@ -1,0 +1,69 @@
+#!/usr/bin/perl
+
+use v5.10;
+use warnings;
+use strict;
+use Scalar::Util qw(looks_like_number);
+
+say "Converting unwrapped xyz to normal one!";
+
+my $file=$ARGV[0]; # file to convert
+
+my ($name,$chuck) = split(/\./,$file);
+
+my $outfile=${name}."converted.xyz"; # send converted file to this name
+
+say "File to convert:\n $file";
+say "converting to: $outfile";
+
+open(READ,'<',$file) || die "Could not open $file\n";
+
+my @lines=<READ>;
+
+close(READ);
+
+
+open(SEND,'>',$outfile) || die "Could not open ${outfile}\n";
+
+my $timesteps;
+my $atoms;
+
+my $chu;
+my $info;
+
+foreach my $line (@lines)
+{
+
+    my ($one,$two,$three,$four) = split(/ /,$line);
+
+    if( looks_like_number($one) && looks_like_number($two)
+	&& looks_like_number($three) && looks_like_number($four))
+	{
+	    print SEND $line;
+	}
+    else
+    {
+	if($one =~ /ITEM/)
+	{
+	    $info=$two;
+	}	
+	else{
+	    if($info =~ /TIMESTEP/)
+	    {
+		$timesteps=$one;
+	    }
+	    elsif($info =~ /NUMBER/)
+	    {
+		$atoms=$one;
+
+		print SEND $atoms;
+		print SEND "Atoms. Timestep: $timesteps";
+		
+	    }
+	    
+	}
+    }
+       
+}
+
+close(SEND);

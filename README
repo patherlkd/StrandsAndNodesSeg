@@ -1,0 +1,69 @@
+This package @2018 contains two programs.
+
+---
+This package is still under development.
+Mail luke.davis.16@ucl.ac.uk for info.
+---
+
+# IMPORTANT #
+
+!) You must mkdir nodenetworkout/ in the same level as src/
+!) The number of beads making up the rod is controlled in nodenetwork.h (Top)
+!) Your xyz file has to have > 2 snapshots in. I recommend storing a whole trajectory and changing the interval value.
+
+!) Most of the parameters can be changed by editing main_structure.cpp (wrapped) or unwrapped_structure.cpp (unwrapped). These include:
+
+o) Bead diameter: dia
+o) How many rods can make a string: rodthresh
+o) length of box: length (doesn't matter for unwrapped)
+o) closeness percentage i.e. the distance which defines whether two beads touch: touchperc
+ 
+~~~~~~~~~~~~~~~~~~~~~~
+UNWRAPPED xyz files
+~~~~~~~~~~~~~~~~~~~~~~
+
+So you have unwrapped the xyz in lammps. The beginning looks like this:
+1)
+
+ITEM: TIMESTEP
+3290000
+ITEM: NUMBER OF ATOMS
+36000
+ITEM: BOX BOUNDS pp pp pp
+-5.3000000000000000e+01 5.3000000000000000e+01
+-5.3000000000000000e+01 5.3000000000000000e+01
+-5.3000000000000000e+01 5.3000000000000000e+01
+ITEM: ATOMS type xu yu zu
+
+But we want:
+
+2)
+
+36000
+Atoms. Timestep: 3290000
+
+@)  If you place the file from (1) in the convert_unwrap like so: 
+
+[perform on command line] convert_unwrap <filename.xyz>
+
+@) You will get a file <filenameconverted.xyz> . So it looks like all the others. My program 
+(compile_unwrap) requires this... but you also get the benefit of using VMD with it now :).
+
+@) To compile the program simply do: 
+
+[perform on command line] compile_unwrap
+
+@) Instructions on output of the previous command will then direct you to run in the correct manner.
+
+
+~~~~~~~~~~~~~
+WRAPPED xyz files
+~~~~~~~~~~~~~
+
+@) No need to convert xyz file (assuming in format (2) above).
+
+@) Compile: 
+
+[perform on command line] compile_wrap
+
+@) Instructions will then direct you to run in the correct manner.
