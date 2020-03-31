@@ -1,12 +1,12 @@
 This package @2018 contains two programs.
 
 ---
-This package is still under development.
 Mail luke.davis.16@ucl.ac.uk for info.
 ---
 
-# IMPORTANT #
+## IMPORTANT #
 
+!) Store these files in a directory called "src"
 !) You must mkdir nodenetworkout/ in the same level as src/
 !) The number of beads making up the rod is controlled in nodenetwork.h (Top)
 !) Your xyz file has to have > 2 snapshots in. I recommend storing a whole trajectory and changing the interval value.
@@ -14,7 +14,7 @@ Mail luke.davis.16@ucl.ac.uk for info.
 !) Most of the parameters can be changed by editing main_structure.cpp (wrapped) or unwrapped_structure.cpp (unwrapped). These include:
 
 o) Bead diameter: dia
-o) How many rods can make a string: rodthresh
+o) How many rods can make a strand: rodthresh
 o) length of box: length (doesn't matter for unwrapped)
 o) closeness percentage i.e. the distance which defines whether two beads touch: touchperc
  
